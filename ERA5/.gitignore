@@ -1,0 +1,7 @@
+\.cdsapirc
+.env
+__pycache__/
+*.pyc
+data/raw/era5/*.nc
+data/raw/era5/*.grib
+data/raw/satsum/*.xlsx
