@@ -54,6 +54,36 @@ python -m pip install -r requirements.txt
 3. Evalúa un **baseline de persistencia** y un **XGBoost Regressor** por horizonte D+1…D+7.
 4. Exporta modelos (`.joblib`), métricas, figuras y un forecast demostrativo bajo `outputs/`.
 
+## Prueba puntual del forecast demo (smoke test)
+
+Chequeo manual sobre `outputs/forecasts/demo_forecast_d1_d7.csv`
+(origen `2026-10-10`, horizontes D+1…D+7 → targets `2026-10-11` … `2026-10-17`).
+
+**No** reemplaza el backtest completo (`outputs/metrics/`, `backtest_predictions_test.csv`).
+Efectividad = `100% − error relativo` respecto al valor observado.
+
+### Promedio agregado D+1…D+7
+
+| Métrica | Valor |
+|---------|-------|
+| Promedio predicho | 5164.34 t |
+| Promedio observado (ventana) | 4037.63 t |
+| Error absoluto | +1126.71 t (sobreestimación) |
+| Error relativo | ≈ 27.9% |
+| Efectividad | ≈ 72.1% |
+
+### Horizonte D+1 (fecha objetivo `2026-10-11`)
+
+| Métrica | Valor |
+|---------|-------|
+| Observado (`y_true`, backtest) | 12880.0 t |
+| Predicho | 11292.98 t |
+| Error absoluto | −1587.02 t (subestimación) |
+| Error relativo | ≈ 12.3% |
+| Efectividad | ≈ 87.7% |
+
+En esta emisión, **D+1** quedó más cerca (~12% de error) que el **promedio de los 7 días** (~28% de error). Un solo origen no mide la calidad global del modelo.
+
 ## Estructura
 
 ```text
@@ -74,6 +104,7 @@ README.md
 - Cero no siempre equivale a ausencia de sargazo.
 - Features y evaluación usan cortes temporales con purga para evitar leakage.
 - ERA5, OpenDrift, clasificación/hurdle y etiquetas de playa **no** forman parte del entrenamiento P0 actual.
+- Las cifras de la sección “Prueba puntual…” son de **una sola fecha de emisión**; para MAE/RMSE por horizonte usá `outputs/metrics/`.
 
 ## Siguiente paso
 
@@ -83,7 +114,8 @@ README.md
 
 ## Checklist P0
 
-- [ ] El notebook corre de inicio a fin solo con el Excel local y `requirements.txt`.
-- [ ] Baseline de persistencia y XGBoost evaluados en D+1…D+7.
-- [ ] Modelos, métricas y una predicción demostrativa guardados en `outputs/`.
-- [ ] README deja claro el alcance regional (sin afirmar arribazón costera) y el roadmap API + ERA5.
+- [x] El notebook corre de inicio a fin solo con el Excel local y `requirements.txt`.
+- [x] Baseline de persistencia y XGBoost evaluados en D+1…D+7.
+- [x] Modelos, métricas y una predicción demostrativa guardados en `outputs/`.
+- [x] README deja claro el alcance regional (sin afirmar arribazón costera) y el roadmap API + ERA5.
+- [x] Smoke test del demo forecast (origen 2026-10-10) documentado: promedio D+1…D+7 y D+1 vs observado, con % de efectividad.
