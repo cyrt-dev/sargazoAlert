@@ -2,6 +2,16 @@
 
 Prototipo de **alerta temprana** de sargazo en el Caribe mexicano: entrenamos modelos de machine learning con series históricas para pronosticar biomasa regional a horizontes.
 
+## Versión histórica — HackMaya
+
+Esta rama (hackmaya/v0) conserva el prototipo original de Sargazo Alert, desarrollado y presentado durante el hackathon HackMaya.
+
+Su propósito es servir como referencia histórica del estado del proyecto al finalizar el evento.
+
+El código original de la presentación está identificado mediante el tag [v0.0.0-hackmaya](https://github.com/cyrt-dev/sargazoAlert/releases/tag/v0.0.0-hackmaya).
+
+Para consultar la versión en desarrollo, sus nuevas funcionalidades y mejoras, visita la rama [main](https://github.com/cyrt-dev/sargazoAlert/tree/main).
+
 ## Qué es este proyecto
 
 Sargazo Alert busca anticipar condiciones de sargazo a partir de datos satelitales e información meteorológica/oceanográfica, para que una app pueda mostrar una señal temprana a residentes, turismo y equipos de respuesta.
